@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --background: 3 3 3;
+  --foreground: 246 246 246;
+  --muted: 161 161 170;
+  --panel: 10 10 10;
+  --panel-strong: 16 16 16;
+  --border: 38 38 38;
+}
+
+@layer base {
+  * {
+    border-color: rgb(var(--border) / 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top center, rgba(255, 255, 255, 0.1), transparent 0 34%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 18%),
+      rgb(var(--background) / 1);
+    color: rgb(var(--foreground) / 1);
+    font-family: "IBM Plex Sans", "SF Pro Display", "Segoe UI", sans-serif;
+    text-rendering: optimizeLegibility;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.45;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 88px 88px;
+    mask-image: radial-gradient(circle at center, black 36%, transparent 100%);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: rgba(255, 255, 255, 0.18);
+    color: rgb(var(--foreground) / 1);
+  }
+}
+
+@layer components {
+  .panel-surface {
+    @apply rounded-3xl border border-white/10 bg-white/[0.03] shadow-panel backdrop-blur;
+  }
+
+  .panel-strong {
+    @apply rounded-3xl border border-white/10 bg-white/[0.05] shadow-panel backdrop-blur;
+  }
+
+  .terminal-dot {
+    @apply h-2.5 w-2.5 rounded-full bg-white/25;
+  }
+
+  .subtle-ring {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
